@@ -17,7 +17,7 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
         e.preventDefault();
 
         if (!title || !description || !datetime || !location) {
-            alert('Please fill in all the fields');
+            alert('Please fill in all fields');
             return;
         }
 
@@ -32,6 +32,7 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
 
         onAdd(newTask);
 
+        // Reset form fields
         setTitle('');
         setDescription('');
         setDatetime('');
@@ -39,74 +40,58 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded-xl p-6 space-y-6 max-w-lg mx-auto"
-        >
-            <h2 className="text-2xl font-bold text-indigo-700 text-center">Add New Task</h2>
+        <div className="min-h-screen bg-gradient-to-br from-black via-blue-900 to-black flex items-center justify-center p-4">
+            <form
+                onSubmit={handleSubmit}
+                className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-6 w-full max-w-lg space-y-5"
+            >
+                <h2 className="text-2xl font-bold text-white text-center">Add New Task</h2>
 
-            {/* Task Title */}
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Task Title</label>
                 <input
                     type="text"
-                    placeholder="Enter task title"
+                    placeholder="Task Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-            </div>
 
-            {/* Task Description */}
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Task Description</label>
                 <textarea
-                    placeholder="Enter task description"
+                    placeholder="Task Description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
-                    rows={4}
+                    className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-            </div>
 
-            {/* Date and Time */}
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Due Date and Time</label>
                 <input
                     type="datetime-local"
                     value={datetime}
                     onChange={(e) => setDatetime(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full p-3 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="text-xs text-gray-500 mt-1">Format: YYYY-MM-DDThh:mm</p>
-            </div>
 
-            {/* Location (Country select) */}
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Location (Country)</label>
                 <select
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
                 >
                     <option value="" disabled>
                         Select a country
                     </option>
                     {countries.map((country) => (
-                        <option key={country} value={country}>
+                        <option key={country} value={country} className='focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-500'>
                             {country}
                         </option>
                     ))}
                 </select>
-            </div>
 
-            {/* Submit Button */}
-            <button
-                type="submit"
-                className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors cursor-pointer"
-            >
-                Add Task
-            </button>
-        </form>
+                <button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 cursor-pointer"
+                >
+                    Add Task
+                </button>
+            </form>
+        </div>
     );
 }
