@@ -40,7 +40,7 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-black via-blue-900 to-black flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-br from-black via-blue-900 to-black flex items-center justify-center p-4 rounded-2xl">
             <form
                 onSubmit={handleSubmit}
                 className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-6 w-full max-w-lg space-y-5"
